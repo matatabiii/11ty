@@ -1,0 +1,20 @@
+---
+layout: layout.njk
+title: 記事一覧
+---
+<h1>
+  {{- title | safe -}}
+</h1>
+
+<div>メイン著者：{{ authors[0].name }}</div>
+
+<ul>
+{% for author in authors  -%}
+  <li>
+  {%- set li = author.name + '：' + author.title -%}
+  {% if loop.first %}<strong>{{ li }}</strong>{% else  %}{{ li }}{% endif  %}
+  </li>
+{%- else  -%}
+  <li>著者はいません！</li>
+{%- endfor  %}
+</ul>

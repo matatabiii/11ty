@@ -1,0 +1,23 @@
+---
+layout: layout.njk
+title: <em>EleventyはNunjucksテンプレートが使える</em>
+authors:
+  - name: matatabiiiA
+    title: マタタビA
+  - name: matatabiiiB
+    title: マタタビB
+---
+<h1>
+  {{- title | safe -}}
+</h1>
+
+<ul>
+{% for author in authors  -%}
+  <li>
+  {%- set li = author.name + '：' + author.title -%}
+  {% if loop.first %}<strong>{{ li }}</strong>{% else  %}{{ li }}{% endif  %}
+  </li>
+{%- else  -%}
+  <li>著者はいません！</li>
+{%- endfor  %}
+</ul>
