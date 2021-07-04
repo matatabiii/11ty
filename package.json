@@ -9,7 +9,7 @@
     "build:sass": "sass --no-source-map src/assets/sass:dist/assets/css && postcss dist/assets/css/*.css --replace",
     "build:eleventy": "eleventy",
     "watch:sass": "sass --watch src/assets/sass:dist/assets/css && postcss dist/assets/css/*.css --replace",
-    "watch:eleventy": "eleventy --serve",
+    "watch:eleventy": "eleventy --serve --port=3000 --incremental",
     "clean": "del dist",
     "start": "cross-env NODE_ENV=development npm-run-all clean dev:sass --parallel watch:* --print-label",
     "build": "cross-env NODE_ENV=production run-s clean build:eleventy build:sass --print-label"

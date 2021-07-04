@@ -5,13 +5,14 @@ module.exports = function(eleventyConfig) {
   // assetsの対象ファイルをoutputディレクトリにコピー
   eleventyConfig.addPassthroughCopy('./src/assets/images');
 
-  // watch対象の追加
-  eleventyConfig.addWatchTarget('./src/assets/sass/');
-  eleventyConfig.addWatchTarget('./src/assets/js/');
+  // // watch対象の追加
+  // eleventyConfig.addWatchTarget('./src/assets/sass/');
+  // eleventyConfig.addWatchTarget('./src/assets/js/');
 
   // BrowserSyncのoptionを上書き
   eleventyConfig.setBrowserSyncConfig({
-    notify: false
+    notify: false,
+    files: ["./dist/assets/**/*"]
   });
 
   // オブジェクトで設定してた値は`return`に指定する（オプション）

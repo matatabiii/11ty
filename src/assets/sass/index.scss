@@ -1,16 +1,114 @@
 @charset 'utf-8';
 
-// # Foundation
-@use './foundation/index' as foundation;
+// 【必須】variable, functions, mixins 読み込み
+@use "./foundation/vars/variable" as *;
+@use "./foundation/vars/functions" as *;
+@use "./foundation/vars/mixins" as *;
 
-// # Layout
+
+// # Foundation
+// @use './foundation/index' as foundation;
+
+// // # Layout
 // @use './layout/index' as layout;
 
-// # Object - Component
+// // # Object - Component
 // @use './object/component/index' as component;
 
-// # Object - Project
+// // # Object - Project
 // @use './object/project/index' as project;
 
-// # Helper - Utility
-@use './object/utility/index' as utility;
+// // # Helper - Utility
+// @use './object/utility/index' as utility;
+
+
+$bg: beige;
+
+html {
+  background: $bg;
+}
+
+::placeholder {
+  color: gray;
+}
+
+.a {
+  user-select: none; /* 適用される */
+  appearance: none;  /* 適用される */
+}
+
+.do-not-do-this {
+  transition: 1s;
+  transform: rotate(20deg);
+}
+
+.Grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: auto;
+  grid-gap: 50px;
+}
+/*
+  画面幅が600pxまではgrid-gapを20pxにする
+  ただし、これはIEでは機能しません
+*/
+@media (max-width: 600px) {
+  .Grid {
+    grid-gap: 20px;
+  }
+}
+/*
+  .-small-gapが付与されたらgrid-gapを20pxにする
+  ただし、これはIEでは機能しません
+*/
+.Grid.-small-gap {
+  grid-gap: 20px;
+}
+
+@include break(width('max')) {/**/}
+
+@include break(width('xl')) {/**/}
+
+@include break('lg') {/**/}
+
+@include break('md') {/**/}
+
+@include break('sm') {/**/}
+@include break(427px) {/**/}
+@include over(375px) {/**/}
+@include over(428px) {/**/}
+@include over('sm') {/**/}
+
+@include over('md') {/**/}
+
+@include over('lg') {/**/}
+
+@include over(width('xl')) {/**/}
+
+@include over(width('max')) {/**/}
+
+
+@include over(375px) {/**/}
+
+@include break(427px) {/**/}
+
+@include over('lg') {/**/}
+
+@include break(width('xl')) {/**/}
+
+
+@include break('md') {/**/}
+
+@include break('sm') {/**/}
+@include over(428px) {/**/}
+
+@include over('md') {/**/}
+
+@include break(width('max')) {/**/}
+
+@include over('sm') {/**/}
+
+@include over(width('xl')) {/**/}
+@include break('lg') {/**/}
+
+@include over(width('max')) {/**/}
