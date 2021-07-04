@@ -1,1 +1,5 @@
-defaults, not ie 11, not ie_mob 11
+> 1% in JP
+not ie 11
+not ie_mob 11
+not dead
+Firefox ESR
