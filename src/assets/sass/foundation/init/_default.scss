@@ -1,0 +1,158 @@
+/*////////////////////////////
+
+@基本設定
+
+////////////////////////////*/
+@use "sass:map"; // sassの機能
+@use "sass:math";
+
+// 【必須】variable, functions, mixins 読み込み
+@use "../vars/variable" as *;
+@use "../vars/functions" as *;
+@use "../vars/mixins" as *;
+
+/*! purgecss start ignore */
+
+@include break(width('max')) {/**/}
+
+@include break(width('xl')) {/**/}
+
+@include break('lg') {/**/}
+
+@include break('md') {/**/}
+
+@include break('sm') {/**/}
+@include break(427px) {/**/}
+@include over(375px) {/**/}
+@include over(428px) {/**/}
+@include over('sm') {/**/}
+
+@include over('md') {/**/}
+
+@include over('lg') {/**/}
+
+@include over(width('xl')) {/**/}
+
+@include over(width('max')) {/**/}
+
+// :root {
+//   $i: 0;
+//   @each $screen in $screen-list {
+//     @if 0 == $i {
+//       --screen: "#{$screen}";
+//     } @else {
+//       @include break($screen) {
+//         --screen: "#{$screen}";
+//       }
+//     }
+//     $i: $i + 1;
+//   }
+
+//   @each $key, $family in $family-map {
+//     --family-#{$key}: #{$family};
+//   }
+
+//   @each $key, $color in $color-map {
+//     --color-#{$key}: #{$color};
+//   }
+// }
+
+html {
+  font-size: 62.5%;
+  // font-size: 15px / 320px * 62.5vw;
+  -webkit-text-size-adjust: 100%;
+  -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+
+  // @include over(375px) {
+  //   font-size: 16px / 375px * 62.5vw;
+  // }
+
+  // @include over(428px) {
+  //   font-size: 16px / 428px * 62.5vw;
+  // }
+
+  // @include over('sm') {
+  //   font-size: 16px / width("sm") * 62.5vw;
+  // }
+
+  @include over('md') {
+    font-size: math.div(16px , width("md")) * 62.5vw;
+  }
+
+  @include over('lg') {
+    font-size: math.div(16px , width("container")) * 62.5vw;
+  }
+
+  @include over('container') {
+    font-size: 62.5%;
+  }
+}
+
+body {
+  min-height: 100vh;
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+}
+
+// form parts
+input[type="text"],
+input[type="password"],
+input[type="search"],
+input[type="tel"],
+input[type="url"],
+input[type="email"],
+input[type="datetime"],
+input[type="date"],
+input[type="month"],
+input[type="week"],
+input[type="time"],
+input[type="datetime-local"],
+input[type="tel"],
+select,
+textarea {
+  border: 1px solid #ccc;
+  background: color('white');
+  width: auto;
+  &:not([size]) {
+    width: 100%;
+  }
+  max-width: 100%;
+  height: auto;
+  min-height: rem(50);
+  padding: rem(5) rem(15);
+  border-radius: rem(8);
+  outline: none !important;
+  transition: border-color 0.35s ease-in-out 0s, box-shadow 0.35s ease-in-out 0s;
+  vertical-align: middle;
+  box-shadow: none !important;
+
+  // &[required],
+  // &[aria-required="true"] {
+  //   background-color: #fff6f6;
+  // }
+
+  @include over('md') {
+    min-height: rem(50);
+  }
+
+  // スマートフォンにて拡大されないためには 16px が必要
+  @at-root html.sp & {
+    font-size: 16px !important;
+  }
+}
+textarea {
+  padding: 15px;
+  height: auto !important;
+}
+input, textarea {
+  @include placeholder(#aaaaaa, 500);
+}
+button:focus {
+  outline: none;
+}
+.c-selectbox {
+  border: 1px solid #ccc;
+  border-radius: rem(8);
+  vertical-align: middle;
+}
+/*! purgecss end ignore */

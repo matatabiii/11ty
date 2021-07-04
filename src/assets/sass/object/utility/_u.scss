@@ -1,0 +1,61 @@
+/*////////////////////////////
+
+@utility/utility
+
+////////////////////////////*/
+// 【必須】variable, functions, mixins 読み込み
+@use '../../foundation/vars/variable' as *;
+@use '../../foundation/vars/functions' as *;
+@use '../../foundation/vars/mixins' as *;
+
+// media
+@media screen {
+  .u-screen-hidden {
+    display: none !important;
+  }
+}
+@media print {
+  .u-print-hidden {
+    display: none !important;
+  }
+}
+
+// 子を持たない要素（空要素）
+.u-empty:empty {
+  display: none !important;
+}
+
+
+@mixin _utility($prefix: "") {
+  // radius
+  .#{$prefix}u-borderRadius-top-right-less {
+    border-top-right-radius: 0 !important;
+  }
+  .#{$prefix}u-borderRadius-top-left-less {
+    border-top-left-radius: 0 !important;
+  }
+  .#{$prefix}u-borderRadius-bottom-right-less {
+    border-bottom-right-radius: 0 !important;
+  }
+  .#{$prefix}u-borderRadius-bottom-left-less {
+    border-bottom-left-radius: 0 !important;
+  }
+
+  // hidden
+  .#{$prefix}u-hidden {
+    display: none !important;
+  }
+}
+
+@include _utility;
+
+@each $screen in $screen-list-min {
+  $prefix: str-slice($screen, 0, 1);
+  $prefixStr: "#{$prefix}\\:";
+  @include break($screen) {
+    @include _utility("#{$prefix}\\:");
+  }
+  @include over($screen) {
+    @include _utility("#{to-upper-case($prefix)}\\:");
+  }
+}

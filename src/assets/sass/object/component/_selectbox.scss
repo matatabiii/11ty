@@ -1,0 +1,58 @@
+// /*////////////////////////////
+
+// @component/selectbox
+
+// ////////////////////////////*/
+// // 【必須】variable, functions, mixins 読み込み
+@use '../../foundation/vars/variable' as *;
+@use '../../foundation/vars/functions' as *;
+@use '../../foundation/vars/mixins' as *;
+
+.c-selectbox {
+  display: inline-block;
+  max-width: 100%;
+  overflow: hidden;
+  position: relative;
+  z-index: 0;
+  color: #999;
+  background: color('white');
+
+  &:after {
+    content: "";
+    display: block;
+    position: absolute;
+    width: rem(12);
+    height: rem(6);
+    right: rem(15);
+    top: 50%;
+    transform: translate3d(0, -50%, 0);
+    @include bg(
+      '../images/svg/select-ui.svg',
+      100%,
+      no-repeat,
+      0,
+      0,
+      false
+    );
+  }
+
+  select {
+    width: 100%;
+    height: 100%;
+    appearance: none;
+    vertical-align: middle;
+    font-size: inherit;
+    color: inherit;
+    padding-right: rem(35);
+    border: hidden !important;
+    background-color: transparent !important;
+    position: relative;
+    z-index: 1;
+    white-space: nowrap;
+    padding-left: rem(15);
+
+    &::-ms-expand {
+      display: none;
+    }
+  }
+}

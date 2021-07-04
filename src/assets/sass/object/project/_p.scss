@@ -1,0 +1,27 @@
+// 【必須】variable, functions, mixins 読み込み
+@use "../../foundation/vars/variable" as *;
+@use "../../foundation/vars/functions" as *;
+@use "../../foundation/vars/mixins" as *;
+
+// https://github.com/dmnsgn/sass-easing/blob/master/_easings.scss
+@use "./../../../../../node_modules/sass-easing/_easings.scss" as *;
+
+/*////////////////////////////
+
+@project/p
+utilityクラスで補えない、
+プロジェクトごとに設定するスタイル
+
+////////////////////////////*/
+
+.is-current {
+  text-decoration: underline;
+}
+
+.p-pt-67p {
+  padding-top: percent(180, 270);
+}
+
+.p-pt-108p {
+  padding-top: percent(400, 370);
+}

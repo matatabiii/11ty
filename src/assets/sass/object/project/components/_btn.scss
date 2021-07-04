@@ -1,0 +1,118 @@
+@use "../../../foundation/vars/variable" as *;
+@use "../../../foundation/vars/functions" as *;
+@use "../../../foundation/vars/mixins" as *;
+
+// https://github.com/dmnsgn/sass-easing/blob/master/_easings.scss
+@use "./../../../../../../node_modules/sass-easing/_easings.scss" as *;
+
+@use 'sass:color';
+
+/*////////////////////////////
+
+@project/btn
+ボタン
+
+////////////////////////////*/
+
+
+$color-text: color("white");
+$action-easing: $easeOutQuad;
+$val-radius: 8px; // radius("small"); // 角丸
+$val-circle: rem(200); // 丸
+
+.p-btn {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  padding: rem(5);
+  overflow: hidden;
+  z-index: 0;
+  text-align: center;
+  // 横幅
+  max-width: 100%;
+  transition: color 0.3s ease-in-out;
+
+  // .p-btn__i
+  &__i {
+    transition: color 0.3s ease-in-out;
+  }
+
+  // ホバー補助
+  &::before {
+    content: "";
+    display: block;
+    width: 0;
+    height: 100%;
+    position: absolute;
+    z-index: -1;
+    position: absolute;
+    top: 0;
+    left: 0;
+    border-radius: inherit;
+    border: 1px solid color('white');
+    background: color.scale(color('theme'), $lightness: -30%);
+    // top: 50%;
+    // left: 50%;
+    opacity: 0;
+    // transform: translate3d(-50%, -50%, 0);
+    pointer-events: none;
+    transition: opacity 0.3s ease-in-out,
+                width 0.3s ease-in-out;
+  }
+
+  // .p-btn--circle
+  &--circle {
+    border-radius: rem(500);
+  }
+
+  // .p-btn--action-reverse
+  &--action-reverse {
+    &::before {
+      background: rgba( color('black'), .4 );
+    }
+  }
+
+  // .p-btn--inset-o
+  &--inset-o {
+    &::after {
+      content: '';
+      display: block;
+      width: calc(100% - 1rem);
+      height: calc(100% - 1rem);
+      top: .5rem;
+      left: .5rem;
+      position: absolute;
+      border: 1px solid;
+      z-index: -1;
+    }
+  }
+
+
+  // disabled
+  &[disabled] {
+    background: rgba($color: #d8d8d8, $alpha: 1)
+  }
+
+  // ホバーアクション
+  @include action() {
+    &[href],
+    &[type="submit"],
+    &[type="button"] {
+      text-decoration: none;
+
+      &:not([disabled]) {
+        color: color('white');
+        .p-btn__i {
+          color: inherit;
+        }
+        &::before {
+          width: 100%;
+          opacity: 1;
+          transition: opacity 0.3s ease-in-out,
+                      width 0.2s ease-in-out;
+        }
+      }
+    }
+  }
+}

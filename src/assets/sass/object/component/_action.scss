@@ -1,0 +1,226 @@
+/*////////////////////////////
+
+@component/action
+
+////////////////////////////*/
+// 【必須】variable, functions, mixins 読み込み
+@use '../../foundation/vars/variable' as *;
+@use '../../foundation/vars/functions' as *;
+@use '../../foundation/vars/mixins' as *;
+
+@use 'sass:color';
+
+/*! purgecss start ignore */
+
+// フェード
+.c-action-fade {
+  transition: opacity 0.6s;
+
+  @include action {
+    opacity: 0.7;
+  }
+}
+
+// フラッシュ
+.c-action-flash {
+  overflow: hidden;
+
+  &::after {
+    content: "";
+    width: 33%;
+    height: 100%;
+    background: rgba(color("white"), 0.7);
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    display: block;
+    opacity: 0;
+    z-index: 1;
+    transform: skew(-20deg) translate3d(-300%, -50%, 0);
+    transition: transform 0.2s ease-in-out, opacity 0.2s ease-in-out;
+  }
+
+  @include action {
+    &[href] {
+      &::after {
+        opacity: 1;
+        transform: skew(-20deg) translate3d(200%, -50%, 0);
+      }
+    }
+  }
+}
+
+.c-action-colorTheme {
+  transition: border 0.35s ease-in-out, color 0.35s ease-in-out;
+
+  @include action {
+    border-color: color("theme");
+    color: color("theme");
+  }
+}
+.c-action-colorPrimary {
+  transition: border 0.35s ease-in-out, color 0.35s ease-in-out;
+
+  @include action {
+    border-color: color("primary");
+    color: color("primary");
+  }
+}
+
+.c-action-bgDarkFilter {
+  position: relative;
+  z-index: 0;
+
+  &::after {
+    content: "";
+    display: block;
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    opacity: 0;
+    background: rgba(color("black"), 0.3);
+    transition: opacity 0.35s ease-in-out;
+    z-index: -1;
+  }
+
+  @include action {
+    &::after {
+      opacity: 1;
+    }
+  }
+}
+
+.c-action-bgColor-theme {
+  &::after {
+    content: "";
+    display: block;
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    opacity: 0;
+    background: rgba(color("theme"), 1);
+    transition: opacity 0.35s ease-in-out;
+    z-index: -1;
+  }
+
+  @include action {
+    &::after {
+      opacity: 1;
+    }
+  }
+}
+
+.c-action-bgColor-primary {
+  &::after {
+    content: "";
+    display: block;
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    opacity: 0;
+    background: rgba(color("primary"), 1);
+    transition: opacity 0.35s ease-in-out;
+    z-index: -1;
+  }
+
+  @include action {
+    &::after {
+      opacity: 1;
+    }
+  }
+}
+
+.c-action-bgColor-secondary {
+  &::after {
+    content: "";
+    display: block;
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    opacity: 0;
+    background: rgba(color("secondary"), 1);
+    transition: opacity 0.35s ease-in-out;
+    z-index: -1;
+  }
+
+  @include action {
+    &::after {
+      opacity: 1;
+    }
+  }
+}
+
+.c-action-bgLightnessGray {
+  position: relative;
+  z-index: 0;
+
+  &::before {
+    content: "";
+    display: block;
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: -1;
+    background: color.scale(color("gray"), $lightness: 80%);
+    transition: opacity 0.35s ease-in-out;
+    opacity: 0;
+  }
+
+  @include action {
+    &::before {
+      opacity: 1;
+    }
+  }
+}
+
+.c-action-scaleupBg {
+  // .c-action-scaleupBg__target
+  &__target {
+    transition: transform 1.6s ease-in-out;
+  }
+
+  &::after {
+    content: '';
+    display: block;
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    z-index: 0;
+    top: 0;
+    left: 0;
+    opacity: 0;
+    background: rgba(color('black'), .4);
+    transition: opacity 1.2s ease-in-out;
+  }
+
+  @include action {
+    .c-action-scaleupBg__target {
+      transform: scale(1.2);
+      transition: transform 1s ease-in-out;
+    }
+    &::after {
+      transition: opacity 1s ease-in-out;
+      opacity: 1;
+    }
+  }
+}
+
+.c-action-popup {
+  transition: box-shadow .3s ease-in-out, transform .3s ease-in-out;
+
+  @include action {
+    box-shadow: 0px 6px 7.52px 0.48px rgba(69, 81, 100, 0.19);
+    transform: translate3d(0, rem(-5), 0);
+  }
+}
+/*! purgecss end ignore */

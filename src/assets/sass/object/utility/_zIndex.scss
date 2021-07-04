@@ -1,0 +1,50 @@
+/*////////////////////////////
+
+@utility/zIndex
+
+zIndex
+
+////////////////////////////*/
+// 【必須】variable, functions, mixins 読み込み
+@use '../../foundation/vars/variable' as *;
+@use '../../foundation/vars/functions' as *;
+@use '../../foundation/vars/mixins' as *;
+
+@mixin _zIndex($prefix: "") {
+  .#{$prefix}u-z0 {
+    z-index: 0;
+  }
+  .#{$prefix}u-z1 {
+    z-index: 1;
+  }
+  .#{$prefix}u-z2 {
+    z-index: 2;
+  }
+  .#{$prefix}u-z3 {
+    z-index: 2;
+  }
+  .#{$prefix}u-_z1 {
+    z-index: -1;
+  }
+  .#{$prefix}u-_z2 {
+    z-index: -2;
+  }
+  .#{$prefix}u-_z3 {
+    z-index: -3;
+  }
+}
+
+@include _zIndex();
+
+@each $screen in $screen-list-min {
+  $prefix: str-slice($screen, 0, 1);
+
+  // $prefixBreak: "#{$prefix}\\:";
+  // @include break($screen) {
+  // }
+
+  $prefixOver: "#{to-upper-case($prefix)}\\:";
+  @include over($screen) {
+    @include _zIndex($prefixOver);
+  }
+}

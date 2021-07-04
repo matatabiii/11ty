@@ -1,0 +1,85 @@
+/*////////////////////////////
+
+@component/share
+
+<div class="c-share u-mt50">
+  <p class="c-share__label"><svg vvclass="c-icon c-share__label__i" aria-hidden="true"><use xlink:href="#i-horn"></use></svg> この記事をシェアする</p>
+
+  <div class="c-share__list">
+    <div class="c-share__list__item">
+      <div class="fb-share-button" data-href="https://developers.facebook.com/docs/plugins/" data-layout="button" data-size="small"><a target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fdevelopers.facebook.com%2Fdocs%2Fplugins%2F&amp;src=sdkpreparse" class="fb-xfbml-parse-ignore">シェア</a></div>
+      <div id="fb-root"></div>
+      <script async defer crossorigin="anonymous" src="https://connect.facebook.net/ja_JP/sdk.js#xfbml=1&version=v9.0"
+        nonce="2eqdS4Xi"></script>
+    </div>
+
+    <div class="c-share__list__item">
+      <a class="twitter-share-button" href="https://twitter.com/intent/tweet?text=Hello%20world">Tweet</a>
+      <script>window.twttr = (function (d, s, id) {
+        var js, fjs = d.getElementsByTagName(s)[0],
+          t = window.twttr || {};
+        if (d.getElementById(id)) return t;
+        js = d.createElement(s);
+        js.id = id;
+        js.src = "https://platform.twitter.com/widgets.js";
+        fjs.parentNode.insertBefore(js, fjs);
+
+        t._e = [];
+        t.ready = function (f) {
+          t._e.push(f);
+        };
+
+        return t;
+      }(document, "script", "twitter-wjs"));</script>
+    </div>
+
+    <div class="c-share__list__item">
+      <div class="line-it-button" data-lang="ja" data-type="share-a" data-ver="3"
+        data-url="https://social-plugins.line.me/ja/how_to_install#lineitbutton" data-color="default" data-size="small"
+        data-count="false" style="display: none;"></div>
+      <script src="https://www.line-website.com/social-plugins/js/thirdparty/loader.min.js" async="async"
+        defer="defer"></script>
+    </div>
+  </div>
+</div>
+
+////////////////////////////*/
+// 【必須】variable, functions, mixins 読み込み
+@use '../../foundation/vars/variable' as *;
+@use '../../foundation/vars/functions' as *;
+@use '../../foundation/vars/mixins' as *;
+
+.c-share {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+  background: #eeeeee;
+  padding: rem(5) rem(10);
+
+  // .c-share__label
+  &__label {
+    font-size: rem(12);
+    font-weight: 700;
+    padding: rem(5) rem(30);
+
+    // .c-share__label__i
+    &__i {
+      font-size: rem(14);
+      margin-right: rem(2);
+    }
+  }
+
+  // .c-share__list
+  &__list {
+    display: flex;
+    align-items: center;
+    line-height: 1;
+    justify-content: center;
+
+    // .c-share__list__item
+    &__item {
+      padding: rem(10) rem(10);
+    }
+  }
+}

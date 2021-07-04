@@ -1,0 +1,26 @@
+/*////////////////////////////
+
+@utility/vertical
+
+vertical
+
+////////////////////////////*/
+// 【必須】variable, functions, mixins 読み込み
+@use '../../foundation/vars/variable' as *;
+@use '../../foundation/vars/functions' as *;
+@use '../../foundation/vars/mixins' as *;
+
+
+// vertical-align
+.u-vertical-top {
+  vertical-align: top;
+}
+.u-vertical-middle {
+  vertical-align: middle;
+}
+.u-vertical-bottom {
+  vertical-align: bottom;
+}
+.u-vertical-baseline {
+  vertical-align: baseline;
+}

@@ -1,0 +1,115 @@
+// 【必須】variable, functions, mixins 読み込み
+@use "sass:math";
+@use "../../foundation/vars/variable" as *;
+@use "../../foundation/vars/functions" as *;
+@use "../../foundation/vars/mixins" as *;
+
+/*////////////////////////////
+
+@utility/width
+横幅
+
+////////////////////////////*/
+
+$_widthMax: 700;
+$_widthMax: math.div($_widthMax, 5);
+
+// width
+@mixin _width($prefix) {
+  .#{$prefix}u-width-1 { width: rem(1); }
+  .#{$prefix}u-width-2 { width: rem(2); }
+  .#{$prefix}u-width-3 { width: rem(3); }
+  .#{$prefix}u-width-4 { width: rem(4); }
+  .#{$prefix}u-width-5 { width: rem(5); }
+  .#{$prefix}u-width-6 { width: rem(6); }
+  .#{$prefix}u-width-7 { width: rem(7); }
+  .#{$prefix}u-width-8 { width: rem(8); }
+  .#{$prefix}u-width-9 { width: rem(9); }
+  .#{$prefix}u-width-10 { width: rem(10); }
+  @for $var from 2 through $_widthMax {
+    $px: $var * 5;
+    .#{$prefix}u-width-#{$px} {
+      width: rem($px);
+    }
+  }
+  .#{$prefix}u-width-auto { width: auto; }
+}
+
+// @mixin _widthOther($prefix) {
+//   @for $var from 1 through $_widthMax {
+//     $px: $var * 5;
+//     .#{$prefix}u-width-#{$px} {
+//       width: rem($px);
+//     }
+//   }
+// }
+
+@mixin _widthCol($prefix) {
+  .#{$prefix}u-maxWidth-12 {
+    max-width: 100%;
+  }
+  .#{$prefix}u-w-12 {
+    width: 100%;
+  }
+  .#{$prefix}u-w-11 {
+    width: 91.66666667%;
+  }
+  .#{$prefix}u-w-10 {
+    width: 83.33333333%;
+  }
+  .#{$prefix}u-w-9 {
+    width: 75%;
+  }
+  .#{$prefix}u-w-8 {
+    width: 66.66666667%;
+  }
+  .#{$prefix}u-w-7 {
+    width: 58.33333333%;
+  }
+  .#{$prefix}u-w-6 {
+    width: 50%;
+  }
+  .#{$prefix}u-w-5col {
+    width: 20%;
+  }
+  .#{$prefix}u-w-5 {
+    width: 41.66666667%;
+  }
+  .#{$prefix}u-w-4 {
+    width: 33.33333333%;
+  }
+  .#{$prefix}u-w-3 {
+    width: 25%;
+  }
+  .#{$prefix}u-w-2 {
+    width: 16.66666667%;
+  }
+  .#{$prefix}u-w-1 {
+    width: 8.33333333%;
+  }
+  .#{$prefix}u-w-auto {
+    width: auto;
+  }
+}
+
+@include _width("");
+
+/*! purgecss start ignore */
+@include _widthCol("");
+/*! purgecss end ignore */
+
+@each $screen in $screen-list-min {
+  $prefix: str-slice($screen, 0, 1);
+
+  // $prefixBreak: "#{$prefix}\\:";
+  // @include break($screen) {
+  // }
+
+  $prefixOver: "#{to-upper-case($prefix)}\\:";
+  @include over($screen) {
+    /*! purgecss start ignore */
+    @include _widthCol($prefixOver);
+    /*! purgecss end ignore */
+    @include _width($prefixOver);
+  }
+}

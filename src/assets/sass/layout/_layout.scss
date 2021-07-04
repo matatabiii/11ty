@@ -1,0 +1,180 @@
+/*////////////////////////////
+
+@layout/layout
+
+////////////////////////////*/
+// 【必須】variable, functions, mixins 読み込み
+@use '../foundation/vars/variable' as *;
+@use '../foundation/vars/functions' as *;
+@use '../foundation/vars/mixins' as *;
+/*! purgecss start ignore */
+
+.l-body {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+
+  // .l-body--2col
+  &--2col {
+    $containerMainSub: width('container') + $gutter + $gutter;
+    .l-container {
+      width: rem($containerMainSub);
+      max-width: 100%;
+      margin: 0 auto;
+      padding: rem(80) $gutter rem(70px) $gutter;
+
+      @include over('lg') {
+        display: flex;
+        padding: rem(80) $gutter rem(100) $gutter;
+      }
+    }
+    .l-main {
+      @include isIE11() {
+        display: block;
+        width: 100%;
+      }
+      @include over("lg") {
+        $padding-right: rem(40);
+        width: rem(840);
+        padding-right: $padding-right;
+      }
+      @include break('lg') {
+        padding-bottom: rem(70);
+      }
+    }
+    .l-side {
+      @include over("lg") {
+        flex: 0 0 auto;
+        width: width("sub");
+      }
+    }
+  }
+}
+
+.l-header {
+  flex: 0 0 auto;
+}
+
+.l-container {
+  flex: 1 1 auto;
+}
+
+.l-footer {
+  flex: 0 0 auto;
+}
+
+/// スクロール方向によってサイドバーの位置を調整
+@include over("lg") {
+  #side-inner {
+    position: sticky;
+    top: 20px;
+  }
+}
+
+
+
+// html,
+// body,
+// .l-body,
+// .l-wrapper,
+// .l-container,
+// .l-main,
+// .l-side {
+//   display: flex;
+// }
+
+// html,
+// body,
+// .l-body,
+// .l-wrapper,
+// .l-main,
+// .l-side {
+//   flex-direction: column;
+// }
+
+// html {
+//   min-height: 100%;
+// }
+
+// body,
+// .l-body,
+// .l-wrapper,
+// .l-container {
+//   flex: 1 1 auto;
+// }
+
+// .l-header,
+// .l-hero,
+// .l-footer {
+//   flex: 0 0 auto;
+// }
+
+// .l-body {
+//   // .l-body--2col
+//   &--2col {
+//     $containerMainSub: width("containerMainSub") + $gutter + $gutter;
+//     .l-container {
+//       width: $containerMainSub;
+//       max-width: 100%;
+//       margin: 0 auto;
+//       padding: 0 $gutter 70px $gutter;
+
+//       @include over('lg') {
+//         display: flex;
+//         padding: 105px $gutter 100px $gutter;
+//       }
+//     }
+//     .l-main {
+//       @include isIE11() {
+//         display: block;
+//         width: 100%;
+//       }
+//       @include over("lg") {
+//         $padding-right: 80px;
+//         width: width("main");
+//         padding-right: $padding-right;
+//       }
+//       @include break('lg') {
+//         padding-bottom: 70px;
+//       }
+//     }
+//     .l-side {
+//       @include over("lg") {
+//         flex: 0 0 auto;
+//         width: width("sub");
+//       }
+//     }
+//   }
+// }
+// .l-main {
+//   max-width: 100%;
+//   @include over("lg") {
+//     flex: 1 1 auto;
+//   }
+// }
+// .l-side {
+//   flex: 0 0 auto;
+//   max-width: 100%;
+// }
+// #side-inner {
+//   @include over("lg") {
+//     transition: transform 0.6s ease-in-out;
+//     position: sticky;
+//     top: 20px;
+//   }
+// }
+
+// /// スクロール方向によってサイドバーの位置を調整
+// @include over("lg") {
+//   // .js-over-header {
+//   //   &.js-direction-up {
+//   //     #side-inner {
+//   //       transition: transform 0.4s ease-in-out;
+//   //       transform: translate3d(0, (height("header-desktop")), 0);
+//   //     }
+//   //   }
+//   // }
+// }
+
+
+/*! purgecss end ignore */

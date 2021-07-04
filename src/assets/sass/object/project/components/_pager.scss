@@ -1,0 +1,96 @@
+@use "../../../foundation/vars/variable" as *;
+@use "../../../foundation/vars/functions" as *;
+@use "../../../foundation/vars/mixins" as *;
+
+// https://github.com/dmnsgn/sass-easing/blob/master/_easings.scss
+@use "./../../../../../../node_modules/sass-easing/_easings.scss" as *;
+
+/*////////////////////////////
+
+@project/pager
+ページャー
+
+////////////////////////////*/
+
+/* -------------------------------------------
+  Pager - 連番ボタン
+------------------------------------------- */
+.p-pager-btn-number {
+  // 基本色
+  $defaultColor: color("theme");
+  $defaultColorBg: color("white");
+  $defaultColorBorder: color("theme");
+
+  // カレント色
+  $currentColor: color("white");
+  $currentColorBg: color("theme");
+  $currentColorBorder: color("theme");
+
+  // サイズ
+  $sizeWidthHeight: rem(40);
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  line-height: 1;
+  border-radius: 50%;
+  padding: 0 0 rem(2) 0; // 中央ズレの補正
+  width: $sizeWidthHeight;
+  height: $sizeWidthHeight;
+  color: $defaultColor;
+  background: $defaultColorBg;
+  border: 1px solid $defaultColorBorder;
+  transition: color 0.3s ease-in-out, border 0.3s ease-in-out, background 0.3s ease-in-out, transform 0.3s ease-in-out;
+
+  // カレント状態
+  &.is-current {
+    color: $currentColor;
+    background: $currentColorBg;
+    border-color: $currentColorBorder;
+  }
+
+  @include action {
+    &[href]:not(.is-current) {
+      color: $currentColor;
+      background: $currentColorBg;
+      border-color: $currentColorBorder;
+    }
+  }
+}
+
+/* -------------------------------------------
+  Pager - 前後ボタン
+------------------------------------------- */
+.p-btn-zengo {
+  // activeカラー
+  $activeColor: color("white");
+  $activeColorBg: color("text");
+  $activeColorBorder: color("text");
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: rem(60);
+  width: 100%;
+  padding: rem(5) rem($gutter);
+  transition: color 0.3s ease-in-out, border 0.3s ease-in-out, background 0.3s ease-in-out, transform 0.3s ease-in-out;
+
+  @include over("md") {
+    height: auto;
+    width: auto;
+  }
+
+  &.is-desabled {
+    color: color('gray-b');
+    opacity: .5;
+    pointer-events: none;
+  }
+
+  @include action {
+    &[href]:not(.is-desabled) {
+      color: $activeColor;
+      background: $activeColorBg;
+      border-color: $activeColorBorder;
+    }
+  }
+}

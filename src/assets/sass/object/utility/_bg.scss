@@ -1,0 +1,89 @@
+/*////////////////////////////
+
+@utility/bg
+
+background
+
+////////////////////////////*/
+// 【必須】variable, functions, mixins 読み込み
+@use '../../foundation/vars/variable' as *;
+@use '../../foundation/vars/functions' as *;
+@use '../../foundation/vars/mixins' as *;
+
+$colorMap: $color-map; // _variable.scss で設定
+
+@mixin _bg($prefix: "") {
+  .#{$prefix}u-bgPosition-center {
+    background-position: center;
+  }
+  .#{$prefix}u-bgPosition-center-left {
+    background-position: center left;
+  }
+  .#{$prefix}u-bgPosition-center-right {
+    background-position: center right;
+  }
+  .#{$prefix}u-bgPosition-left-center {
+    background-position: left center;
+  }
+  .#{$prefix}u-bgPosition-right-center {
+    background-position: right center;
+  }
+}
+
+@mixin _bgOther($prefix: "") {
+  @each $key, $color in $colorMap {
+    .#{$prefix}u-bgColor-#{$key} {
+      background-color: color($key);
+    }
+  }
+
+  .#{$prefix}u-bgSize-contain {
+    background-size: contain;
+  }
+  .#{$prefix}u-bgSize-cover {
+    background-size: cover;
+  }
+  .#{$prefix}u-bgAttachment-scroll {
+    background-attachment: scroll;
+  }
+  .#{$prefix}u-bgAttachment-fixed {
+    background-attachment: fixed;
+  }
+  .#{$prefix}u-bgAttachment-local {
+    background-attachment: local;
+  }
+  .#{$prefix}u-bgClip-borderBox {
+    background-clip: border-box;
+  }
+  .#{$prefix}u-bgClip-paddingBox {
+    background-clip: padding-box;
+  }
+  .#{$prefix}u-bgClip-contentBox {
+    background-clip: content-box;
+  }
+  .#{$prefix}u-bgClip-text {
+    background-clip: text;
+    -webkit-background-clip: text;
+    color: transparent;
+  }
+}
+
+@include _bg();
+
+/*! purgecss start ignore */
+@include _bgOther();
+/*! purgecss end ignore */
+
+
+@each $screen in $screen-list-min {
+  $prefix: str-slice($screen, 0, 1);
+
+  // $prefixBreak: "#{$prefix}\\:";
+  // @include break($screen) {
+  // }
+
+  $prefixOver: "#{to-upper-case($prefix)}\\:";
+  @include over($screen) {
+    @include _bg($prefixOver);
+  }
+}

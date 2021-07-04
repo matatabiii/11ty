@@ -1,0 +1,19 @@
+/*////////////////////////////
+
+@utility/vertical
+
+vertical
+
+////////////////////////////*/
+// 【必須】variable, functions, mixins 読み込み
+@use '../../foundation/vars/variable' as *;
+@use '../../foundation/vars/functions' as *;
+@use '../../foundation/vars/mixins' as *;
+
+// cursor
+.u-pointer {
+  cursor: pointer;
+}
+.u-not-allowed {
+  cursor: not-allowed;
+}

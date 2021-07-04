@@ -1,0 +1,39 @@
+/*////////////////////////////
+
+@utility/size
+
+font-size
+
+////////////////////////////*/
+// 【必須】variable, functions, mixins 読み込み
+@use '../../foundation/vars/variable' as *;
+@use '../../foundation/vars/functions' as *;
+@use '../../foundation/vars/mixins' as *;
+
+$sizeMax: 80;
+/*! purgecss start ignore */
+
+@mixin _size($prefix: "") {
+  @for $i from 10 through $sizeMax {
+    .#{$prefix}u-size#{$i} {
+      font-size: rem($i);
+    }
+  }
+}
+
+@include _size();
+
+$_screen-list-min: ("md");
+@each $screen in $_screen-list-min {
+  $prefix: str-slice($screen, 0, 1);
+
+  // $prefixBreak: "#{$prefix}\\:";
+  // @include break($screen) {
+  // }
+
+  $prefixOver: "#{to-upper-case($prefix)}\\:";
+  @include over($screen) {
+    @include _size($prefixOver);
+  }
+}
+/*! purgecss end ignore */

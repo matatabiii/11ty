@@ -1,0 +1,84 @@
+// 【必須】variable, functions, mixins 読み込み
+@use "../../foundation/vars/variable" as *;
+@use "../../foundation/vars/functions" as *;
+@use "../../foundation/vars/mixins" as *;
+
+/*////////////////////////////
+
+@project/list
+
+////////////////////////////*/
+
+/// 箇条書きリスト
+.p-list-disc {
+  list-style: none;
+  > li {
+    text-indent: rem(-14);
+    padding-left: rem(14);
+    &::before {
+      content: "";
+      display: inline-block;
+      text-indent: 0;
+      font-size: rem(11);
+      width: 1em;
+      height: 1em;
+      margin-right: rem(3);
+      color: color("theme");
+      background: currentColor;
+      border-radius: 50%;
+      display: inline-block;
+      position: relative;
+      vertical-align: 0.1em;
+    }
+
+    > * {
+      text-indent: 0;
+    }
+  }
+
+  &.p--large {
+    > li {
+      &::before {
+        vertical-align: 0.45em;
+      }
+    }
+  }
+}
+
+/// 連番リスト
+ol.p-list-num {
+  list-style-type: decimal;
+  padding-left: 1em;
+}
+
+/// 汎用リスト
+.p-list-data {
+  list-style: none;
+  padding-left: 0;
+
+  li {
+    text-indent: -1em;
+    padding-left: 1em;
+
+    &:before {
+      content: attr(data-li);
+      width: 1em;
+      display: inline-block;
+      text-align: center;
+      text-indent: 0;
+    }
+
+    > * {
+      text-indent: 0;
+    }
+  }
+
+  // .p-list-data--none
+  &--none {
+    li {
+      &:before {
+        content: none;
+      }
+    }
+  }
+}

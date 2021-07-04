@@ -1,0 +1,44 @@
+/*////////////////////////////
+
+@utility/object-fit
+
+object-fit
+
+////////////////////////////*/
+// 【必須】variable, functions, mixins 読み込み
+@use '../../foundation/vars/variable' as *;
+@use '../../foundation/vars/functions' as *;
+@use '../../foundation/vars/mixins' as *;
+
+@mixin _objectFit($prefix: "") {
+  .#{$prefix}u-object-position-center {
+    object-position: center center;
+  }
+  .#{$prefix}u-object-position-center-top {
+    object-position: center top;
+  }
+  .#{$prefix}u-object-position-center-bottom {
+    object-position: center bottom;
+  }
+  .#{$prefix}u-object-position-right-center {
+    object-position: right center;
+  }
+  .#{$prefix}u-object-position-left-center {
+    object-position: left center;
+  }
+}
+
+@include _objectFit();
+
+@each $screen in $screen-list-min {
+  $prefix: str-slice($screen, 0, 1);
+
+  // $prefixBreak: "#{$prefix}\\:";
+  // @include break($screen) {
+  // }
+
+  $prefixOver: "#{to-upper-case($prefix)}\\:";
+  @include over($screen) {
+    @include _objectFit($prefixOver);
+  }
+}
